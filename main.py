@@ -60,7 +60,7 @@ projectile4.color("cyan")
 projectile4.speed(0)
 projectile4.shape("projectile.png")
 projectile4.penup()
-projectile4.goto(-120, 864)
+projectile4.goto(-120, 860)
 
 ground = turtle.Turtle()
 ground.color("lime")
@@ -113,10 +113,12 @@ def respawn():
 
 def game_over():
     global mode
+    global prodspeed
     pen1.write("Game Over", align="center", font=("Courier", 20, "normal"))
-    pen2.write("press r to restart", align="center", font=("Courier", 20, "normal"))
+    pen2.write("press space to restart", align="center", font=("Courier", 20, "normal"))
     wn.bgcolor("red")
-    wn.onkeypress(respawn, "r")
+    wn.onkeypress(respawn, "space")
+    prodspeed = 16
     projectile.hideturtle()
     projectile1.hideturtle()
     projectile2.hideturtle()
@@ -198,8 +200,8 @@ wn.onkeypress(sound, "s")
 
 while True:
     if mode:
-        if prodspeed > 24:
-            prodspeed = 24
+        if prodspeed > 30:
+            prodspeed = 30
         wn.update()
         projectile_go_down()
         time.sleep(0.04)
@@ -294,7 +296,6 @@ while True:
             projectile4.setx(x)
             winsound.PlaySound("oof.wav", 1)
             game_over()
-        print(prodspeed)
     else:
         wn.update()
         if player.xcor() < -480:
